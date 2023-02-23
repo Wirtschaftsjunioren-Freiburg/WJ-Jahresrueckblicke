@@ -1,0 +1,134 @@
+
+<link rel="stylesheet" type="text/css" href="/static/css/main.css" />
+<link rel="stylesheet" type="text/css" href="/static/plugins/fullpage/fullpage.css" />
+<link rel="stylesheet" type="text/css" href="/static/plugins/bootstrap/css/bootstrap-grid.min.css" />
+<link rel="stylesheet" type="text/css" href="/static/plugins/jquery-mosaic/jquery.mosaic.min.css" />
+<script type="text/javascript" src="/static/plugins/fontawesome/js/all.min.js"></script>
+<script type="text/javascript" src="/static/plugins/fullpage/fullpage.js"></script>
+<script type="text/javascript" src="/static/plugins/jquery/jquery-3.6.3.min.js"></script>
+<script type="text/javascript" src="/static/plugins/jquery-mosaic/jquery.mosaic.min.js"></script>
+
+<div id="fullpage">
+    <section class="section odd">
+        <div class="p-5">
+            <div class="row">
+                <div class="col-md-12">
+                    <img src="/static/img/logo.svg" width="400" alt="Wirtschaftsjunioren Freiburg" class="mb-5" />
+                    <h1 class="mt-5 pt-5 pb-0 mb-0">70 Jahre</h1>
+                    <h2 class="mt-0">Wirtschaftsjunioren Freiburg</h2>
+                    <br><br>
+                    <h3 style="color: lightgrey; font-size: 4em;"><i class="fa fa-angles-down fa-beat fade-scale"></i> Scrollen, um den interaktiven Rückblicke zu entdecken</h3>
+                    <img src="/static/img/skyline-test.jpg" width="100%;">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section even">
+        <div class="p-5">
+            <h1>2022</h1>
+            <div class="slide" data-anchor="slide1">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Das Jahr in Bildern</h2>
+                        <div id="myMosaic">
+                            <img src="/static/img/2022/2022-01-20_Jahresauftakt.jpg" data-aspect-ratio="1.432">
+                            <img src="/static/img/2022/2022-03-14_BGM_Christina_Obergföll.jpg" data-aspect-ratio="1.432">
+                            <img src="/static/img/2022/2022-04-07_LUDOKI_Workshop.JPG" data-aspect-ratio="1.33">
+                            <img src="/static/img/2022/2022-06-08-12_EUKO_Brügge.jpeg" data-aspect-ratio="1.1">
+                            <img src="/static/img/2022/2022-07-21_ Sommerfest-1.jpg" data-aspect-ratio="1.432">
+                            <img src="/static/img/2022/2022-07-28_Besichtigung_VoBa.jpg" data-aspect-ratio="1.432">
+                            <img src="/static/img/2022/2022-10-05_Kochevent.jpg" data-aspect-ratio="1">
+                            <img src="/static/img/2022/2022-10-15_Rouge_et_noir_1.jpg" data-aspect-ratio="1.432">
+                            <img src="/static/img/2022/2022-10-15_Rouge_et_noir_2.jpg" data-aspect-ratio="1.432">
+                            <img src="/static/img/2022/2022-11-09_Unternehmen-Zukunft-Kestenholz.jpg" data-aspect-ratio="1.432">
+                            <img src="/static/img/2022/2022-12-20_Übergabe_Spende_DRK-Freiburg.jpg" data-aspect-ratio="1.432">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide" data-anchor="slide2">
+                <h2>Events</h2>
+            </div>
+            <div class="slide" data-anchor="slide3">
+                <h2>Vorstand</h2>
+            </div>
+            <div class="slide" data-anchor="slide4">
+                <h2>Ehrungen</h2>
+            </div>
+        </div>
+    </section>
+    <section class="section odd">
+        <div class="p-5">
+            <div class="row">
+                <div class="col-12">
+                    <h1>2020</h1>
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="">
+                                <h3><i class="fa fa-crown"></i> Vorstandsvorsitzender</h3>
+                                <div class="ps-5">
+                                    <strong>Gaétan Joffroy</strong>
+                                </div>
+                                <br>
+                                <h3><i class="fa fa-users"></i> Vorstandsteam</h3>
+                                <div class="ps-5">
+                                    <strong>Alica Ruder</strong><br>
+                                    Stabstelle Öffentlichkeitsarbeit<br>
+                                    <strong>Daniel Kemen</strong><br>
+                                    Ressort Bildung & Soziales
+                                </div>
+                                <br>
+                                <h3><i class="fa fa-medal"></i> Ehrungen</h3>
+                                <div class="ps-5">
+                                    <strong>Alica Ruder</strong><br>
+                                    Goldene Juniorennadel<br>
+                                    <strong>Daniel Kemen</strong><br>
+                                    Silberne Juniorennadel
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4" style="text-align: center;">
+                            <img src="/static/img/2020.jpg" class="pdf-preview">
+                            <br><br>
+                            <div class="pdf-label">
+                                <i class="fa fa-file-pdf"></i>  Jahresrückblick als PDF &raquo;
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        $('#myMosaic').Mosaic({
+            maxRows: 2,
+            maxRowHeightPolicy: 'crop',
+            innerGap: 5
+        });
+
+        var myFullpage = new fullpage('#fullpage', {
+            licenseKey: 'gplv3-license',
+            anchors: ['main', '2022', '2021','2020'],
+            navigation: true,
+            navigationPosition: 'right',
+            navigationTooltips: ['Start', '2022', '2021','2020'],
+            showActiveTooltip: true,
+            responsiveWidth: 900,
+            onLeave: function(origin,destination,direction,trigger){
+                if($(destination.item).hasClass('even')){
+                    $('#fp-nav').removeClass('odd');
+                    $('#fp-nav').addClass('even');
+                } else {
+                    $('#fp-nav').removeClass('even');
+                    $('#fp-nav').addClass('odd');
+                };
+            }
+        });
+    });
+</script>
