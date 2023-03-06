@@ -78,7 +78,16 @@ section.odd {
     background-color: rgb(1, 52, 147);
 }
 
+.even .pdf-label {
+    padding: 20px;
+    width: 250px;
+    color: rgb(1, 52, 147);
+    background-color: white;
+}
+
 .pdf-preview {
+    width: 290px;
+    text-align: center;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
 }
 

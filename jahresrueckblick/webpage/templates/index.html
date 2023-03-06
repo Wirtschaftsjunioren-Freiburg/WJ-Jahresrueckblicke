@@ -1,4 +1,5 @@
-
+{% load math %}
+{% load filter %}
 <link rel="stylesheet" type="text/css" href="/static/css/main.css" />
 <link rel="stylesheet" type="text/css" href="/static/plugins/fullpage/fullpage.css" />
 <link rel="stylesheet" type="text/css" href="/static/plugins/bootstrap/css/bootstrap-grid.min.css" />
@@ -19,47 +20,67 @@
                     <small>Mit freundlicher Unterstützung der <a href="https://software-design.de">SD Software-Design GmbH</a></small>
                 </div>
                 <div class="col-md-12">
-                    <h1 class="mt-5 pt-5 pb-0 mb-0">70 Jahre</h1>
+                    <h1 class="mt-5 pt-5 pb-0 mb-0">{{ years.0.year|subtract:years.last.year|add:1 }} Jahre</h1>
                     <h2 class="mt-0">Wirtschaftsjunioren Freiburg</h2>
-                    <a href="#2022" style="text-decoration: none;"><h3 style="color: lightgrey; font-size: 4em;"><i class="fa fa-angles-down fa-beat fade-scale"></i> Scrollen, um den interaktiven Rückblicke zu entdecken</h3></a>
+                    <a href="#{{ years.0.year }}" style="text-decoration: none;"><h3 style="color: lightgrey; font-size: 4em;"><i class="fa fa-angles-down fa-beat fade-scale"></i> Scrollen, um den interaktiven Rückblicke zu entdecken</h3></a>
                 </div>
             </div>
         </div>
         <img id="skyline" src="/static/img/skyline1_blue.svg" width="100%;">
     </section>
-    <section class="section even">
+    {% for year in years %}
+    <section class="section {% if forloop.counter0|divisibleby:2 %}even{% else %}odd{% endif %}" data-anchor="{{ year.year }}" data-tooltip="{{ year.year }}">
         <div class="p-5">
-            <h1>2022</h1>
+            <h1>{{ year.name }}</h1>
             <div class="slide" data-anchor="slide1">
                 <div class="row">
                     <div class="col-4">
                         <div class="">
-                            <h3><i class="fa fa-crown"></i> Vorstandsvorsitzender</h3>
-                            <div class="ps-5">
-                                <strong>Daniel Kemen</strong><br>
-                                Vorstandsvorsitzender<br>
-                            </div>
-                            <br>
+                            {% if year.position_set|getChairmen|length > 0 %}
+                                <h3><i class="fa fa-crown"></i> Vorstandsvorsitzende(r)</h3>
+                                <div class="ps-5">
+                                    {% for position in year.position_set|getChairmen %}
+                                        {% if position.chairman %}
+                                            <strong>{{ position.person }}</strong><br>
+                                            {{ position.position }}<br><br>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                <br>
+                            {% endif %}
+                            {% if year.position_set|getNonChairmen|length > 0 %}
                             <h3><i class="fa fa-users"></i> Vorstandsteam</h3>
                             <div class="ps-5">
-                                <strong>Alica Ruder</strong><br>
-                                Stabstelle Öffentlichkeitsarbeit<br><br>
-                                <strong>Daniel Kemen</strong><br>
-                                Ressort Bildung & Soziales
+                                {% for position in year.position_set|getNonChairmen %}
+                                    {% if not position.chairman %}
+                                        <strong>{{ position.person }}</strong><br>
+                                        {{ position.position }}<br><br>
+                                    {% endif %}
+                                {% endfor %}
                             </div>
                             <br>
+                            {% endif %}
                             <h3><i class="fa fa-medal"></i> Ehrungen</h3>
                             <div class="ps-5">
-                                <strong>Alica Ruder</strong><br>
-                                Goldene Juniorennadel<br><br>
-                                <strong>Daniel Kemen</strong><br>
-                                Silberne Juniorennadel
+                                {% for honour in year.honour_set.all %}
+                                    <strong>{{ honour.person }}</strong><br>
+                                    {{ honour.honour }}<br><br>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
                     <div class="col-md-8">
-                        <h2 class="mt-0">Das Jahr in Bildern</h2>
-                        <div id="myMosaic">
+                        <h2 class="mt-0">{% if year.slogan %}{{ year.slogan }}{% else %}Highlights{% endif %}</h2>
+                        {% if year.document and year.document_image %}
+                        <img src="{{ year.document_image.url }}" class="pdf-preview">
+                        <br><br>
+                        <a href="{{ year.document.url }}">
+                            <div class="pdf-label">
+                                <i class="fa fa-file-pdf"></i>  Jahresrückblick als PDF &raquo;
+                            </div>
+                        </a>
+                        {% endif %}
+                         <!--div id="myMosaic">
                             <div class="image-caption">
                                 <img src="/static/img/2022/2022-01-20_Jahresauftakt.jpg" width="100%" height="100%">
                                 <div class="caption">Highlight Veranstaltung 1</div>
@@ -105,7 +126,7 @@
                                 <div class="caption">Highlight Veranstaltung 1</div>
                             </div>
                             
-                        </div>
+                        </div-->
                     </div>
                 </div>
             </div>
@@ -114,48 +135,7 @@
             </div>
         </div>
     </section>
-    <section class="section odd">
-        <div class="p-5">
-            <div class="row">
-                <div class="col-12">
-                    <h1>2020</h1>
-                    <div class="row">
-                        <div class="col-4">
-                            <div class="">
-                                <h3><i class="fa fa-crown"></i> Vorstandsvorsitzender</h3>
-                                <div class="ps-5">
-                                    <strong>Gaétan Joffroy</strong>
-                                </div>
-                                <br>
-                                <h3><i class="fa fa-users"></i> Vorstandsteam</h3>
-                                <div class="ps-5">
-                                    <strong>Alica Ruder</strong><br>
-                                    Stabstelle Öffentlichkeitsarbeit<br>
-                                    <strong>Daniel Kemen</strong><br>
-                                    Ressort Bildung & Soziales
-                                </div>
-                                <br>
-                                <h3><i class="fa fa-medal"></i> Ehrungen</h3>
-                                <div class="ps-5">
-                                    <strong>Alica Ruder</strong><br>
-                                    Goldene Juniorennadel<br>
-                                    <strong>Daniel Kemen</strong><br>
-                                    Silberne Juniorennadel
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-8" style="text-align: center;">
-                            <img src="/static/img/2020.jpg" class="pdf-preview">
-                            <br><br>
-                            <div class="pdf-div class="caption"">
-                                <i class="fa fa-file-pdf"></i>  Jahresrückblick als PDF &raquo;
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    {% endfor %}
 </div>
 
 
@@ -172,10 +152,8 @@
 
         var myFullpage = new fullpage('#fullpage', {
             licenseKey: 'gplv3-license',
-            anchors: ['main', '2022', '2021','2020'],
             navigation: true,
             navigationPosition: 'right',
-            navigationTooltips: ['Start', '2022', '2021','2020'],
             showActiveTooltip: true,
             responsiveWidth: 900,
             onLeave: function(origin,destination,direction,trigger){

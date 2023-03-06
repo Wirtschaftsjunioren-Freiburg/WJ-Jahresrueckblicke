@@ -1,4 +1,6 @@
 venv
-jahresrueckblick/images
-jahresrueckblick/pdfs
+jahresrueckblick/media/images
+jahresrueckblick/media/pdfs
 jahresrueckblick/db.sqlite3
+jahresrueckblick/.DS_Store
+.DS_Store

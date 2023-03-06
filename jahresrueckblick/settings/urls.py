@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from django.conf.urls.static import static
 from webpage.views import index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # include webpage urls
     path('', index),
-]
+]   + static('media/', document_root='media/')
