@@ -21,7 +21,7 @@
                 <div class="col-md-12">
                     <h1 class="mt-5 pt-5 pb-0 mb-0">70 Jahre</h1>
                     <h2 class="mt-0">Wirtschaftsjunioren Freiburg</h2>
-                    <h3 style="color: lightgrey; font-size: 4em;"><i class="fa fa-angles-down fa-beat fade-scale"></i> Scrollen, um den interaktiven Rückblicke zu entdecken</h3>
+                    <a href="#2022" style="text-decoration: none;"><h3 style="color: lightgrey; font-size: 4em;"><i class="fa fa-angles-down fa-beat fade-scale"></i> Scrollen, um den interaktiven Rückblicke zu entdecken</h3></a>
                 </div>
             </div>
         </div>
@@ -60,17 +60,50 @@
                     <div class="col-md-8">
                         <h2 class="mt-0">Das Jahr in Bildern</h2>
                         <div id="myMosaic">
-                            <img src="/static/img/2022/2022-01-20_Jahresauftakt.jpg" data-aspect-ratio="1.432">
-                            <img src="/static/img/2022/2022-03-14_BGM_Christina_Obergföll.jpg" data-aspect-ratio="1.432">
-                            <img src="/static/img/2022/2022-04-07_LUDOKI_Workshop.JPG" data-aspect-ratio="1.33">
-                            <img src="/static/img/2022/2022-06-08-12_EUKO_Brügge.jpeg" data-aspect-ratio="1.1">
-                            <img src="/static/img/2022/2022-07-21_ Sommerfest-1.jpg" data-aspect-ratio="1.432">
-                            <img src="/static/img/2022/2022-07-28_Besichtigung_VoBa.jpg" data-aspect-ratio="1.432">
-                            <img src="/static/img/2022/2022-10-05_Kochevent.jpg" data-aspect-ratio="1">
-                            <img src="/static/img/2022/2022-10-15_Rouge_et_noir_1.jpg" data-aspect-ratio="1.432">
-                            <img src="/static/img/2022/2022-10-15_Rouge_et_noir_2.jpg" data-aspect-ratio="1.432">
-                            <img src="/static/img/2022/2022-11-09_Unternehmen-Zukunft-Kestenholz.jpg" data-aspect-ratio="1.432">
-                            <img src="/static/img/2022/2022-12-20_Übergabe_Spende_DRK-Freiburg.jpg" data-aspect-ratio="1.432">
+                            <div class="image-caption">
+                                <img src="/static/img/2022/2022-01-20_Jahresauftakt.jpg" width="100%" height="100%">
+                                <div class="caption">Highlight Veranstaltung 1</div>
+                            </div>
+                            <div class="image-caption">
+                                <img src="/static/img/2022/2022-03-14_BGM_Christina_Obergföll.jpg" width="100%" height="100%">
+                                <div class="caption">Highlight Veranstaltung 1</div>
+                            </div>
+                            <div class="image-caption">
+                                <img src="/static/img/2022/2022-04-07_LUDOKI_Workshop.JPG" width="100%" height="100%">
+                                <div class="caption">Highlight Veranstaltung 1</div>
+                            </div>
+                            <div class="image-caption">
+                                <img src="/static/img/2022/2022-06-08-12_EUKO_Brügge.jpeg" width="100%" height="100%">
+                                <div class="caption">Highlight Veranstaltung 1</div>
+                            </div>
+                            <div class="image-caption">
+                                <img src="/static/img/2022/2022-07-21_ Sommerfest-1.jpg" width="100%" height="100%">
+                                <div class="caption">Highlight Veranstaltung 1</div>
+                            </div>
+                            <div class="image-caption">
+                            <img src="/static/img/2022/2022-07-28_Besichtigung_VoBa.jpg" width="100%" height="100%">
+                                <div class="caption">Highlight Veranstaltung 1</div>
+                            </div>
+                            <div class="image-caption">
+                                <img src="/static/img/2022/2022-10-05_Kochevent.jpg" width="100%" height="100%">
+                                <div class="caption">Highlight Veranstaltung 1</div>
+                            </div>
+                            <div class="image-caption">
+                                <img src="/static/img/2022/2022-10-15_Rouge_et_noir_1.jpg" width="100%" height="100%">
+                                <div class="caption">Highlight Veranstaltung 1</div>
+                            </div>
+                            <div class="image-caption">
+                                <img src="/static/img/2022/2022-10-15_Rouge_et_noir_2.jpg" width="100%" height="100%">
+                                <div class="caption">Highlight Veranstaltung 1</div>
+                            </div>
+                            <div class="image-caption">
+                                <img src="/static/img/2022/2022-11-09_Unternehmen-Zukunft-Kestenholz.jpg" width="100%" height="100%">
+                                <div class="caption">Highlight Veranstaltung 1</div>
+                            </div>
+                            <div class="image-caption">
+                                <img src="/static/img/2022/2022-12-20_Übergabe_Spende_DRK-Freiburg.jpg" width="100%" height="100%">
+                                <div class="caption">Highlight Veranstaltung 1</div>
+                            </div>
                             
                         </div>
                     </div>
@@ -114,7 +147,7 @@
                         <div class="col-8" style="text-align: center;">
                             <img src="/static/img/2020.jpg" class="pdf-preview">
                             <br><br>
-                            <div class="pdf-label">
+                            <div class="pdf-div class="caption"">
                                 <i class="fa fa-file-pdf"></i>  Jahresrückblick als PDF &raquo;
                             </div>
                         </div>
@@ -132,7 +165,9 @@
         $('#myMosaic').Mosaic({
             maxRows: 2,
             maxRowHeightPolicy: 'crop',
-            innerGap: 5
+            innerGap: 5,
+            refitOnResize: true,
+            refitOnResizeDelay: false,
         });
 
         var myFullpage = new fullpage('#fullpage', {
