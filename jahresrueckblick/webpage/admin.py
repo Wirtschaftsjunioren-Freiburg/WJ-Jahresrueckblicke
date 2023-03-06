@@ -9,13 +9,9 @@ class YearSlideResource(resources.ModelResource):
     class Meta:
         model = YearSlide
 
-class EventResource(resources.ModelResource):
+class HighlightResource(resources.ModelResource):
     class Meta:
-        model = Event
-
-class ImageResource(resources.ModelResource):
-    class Meta:
-        model = Image
+        model = Highlight
 
 class PositionResource(resources.ModelResource): 
     class Meta:
@@ -27,7 +23,6 @@ class HonourResource(resources.ModelResource):
 
 
 admin.site.register(YearSlide,ImportExportModelAdmin)
-admin.site.register(Event,ImportExportModelAdmin)
-admin.site.register(Image,ImportExportModelAdmin)
+admin.site.register(Highlight,ImportExportModelAdmin)
 admin.site.register(Position,ImportExportModelAdmin)
 admin.site.register(Honour,ImportExportModelAdmin)

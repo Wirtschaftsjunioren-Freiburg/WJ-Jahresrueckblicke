@@ -50,6 +50,14 @@ section.odd {
     color: rgb(1, 52, 147);
 }
 
+.odd .bordered {
+    border: 1px solid rgb(1, 52, 147);
+}
+
+.even .bordered {
+    border: 1px solid white;
+}
+
 /** Captions **/
 .image-caption img {
     z-index: -999;    
@@ -74,19 +82,19 @@ section.odd {
 .pdf-label {
     color: white;
     padding: 20px;
+    width: 300px;
     text-align: center;
     background-color: rgb(1, 52, 147);
+    text-decoration: none;
 }
 
 .even .pdf-label {
-    padding: 20px;
-    width: 250px;
     color: rgb(1, 52, 147);
     background-color: white;
 }
 
 .pdf-preview {
-    width: 290px;
+    width: 340px;
     text-align: center;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
 }
@@ -104,6 +112,13 @@ section.odd {
     margin-left: 50px;
 }
 
+.odd .fp-arrow.fp-prev {
+    border-color: transparent rgb(1, 52, 147) transparent transparent !important;
+}
+
+.odd .fp-arrow.fp-next {
+    border-color: transparent transparent transparent rgb(1, 52, 147) !important;
+}
 
 #fp-nav ul li a span, .fp-slidesNav ul li a span {
     background: rgb(1, 52, 147) !important;

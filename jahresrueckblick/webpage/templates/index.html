@@ -3,11 +3,14 @@
 <link rel="stylesheet" type="text/css" href="/static/css/main.css" />
 <link rel="stylesheet" type="text/css" href="/static/plugins/fullpage/fullpage.css" />
 <link rel="stylesheet" type="text/css" href="/static/plugins/bootstrap/css/bootstrap-grid.min.css" />
-<link rel="stylesheet" type="text/css" href="/static/plugins/jquery-mosaic/jquery.mosaic.min.css" />
 <script type="text/javascript" src="/static/plugins/fontawesome/js/all.min.js"></script>
 <script type="text/javascript" src="/static/plugins/fullpage/fullpage.js"></script>
 <script type="text/javascript" src="/static/plugins/jquery/jquery-3.6.3.min.js"></script>
-<script type="text/javascript" src="/static/plugins/jquery-mosaic/jquery.mosaic.min.js"></script>
+<script>
+    const anchors = ['start',{% for year in years %}'{{ year.year }}'{% if not forloop.last %},{% endif %}{% endfor %},'ende'];
+    const slides = ['Start',{% for year in years %}'{{ year.name }}'{% if not forloop.last %},{% endif %}{% endfor %},'Ende'];
+</script>
+<script type="text/javascript" src="/static/js/main.js"></script>
 
 <div id="fullpage">
     <section class="section odd">
@@ -29,142 +32,133 @@
         <img id="skyline" src="/static/img/skyline1_blue.svg" width="100%;">
     </section>
     {% for year in years %}
-    <section class="section {% if forloop.counter0|divisibleby:2 %}even{% else %}odd{% endif %}" data-anchor="{{ year.year }}" data-tooltip="{{ year.year }}">
+    <section class="section {% if forloop.counter0|divisibleby:2 %}even{% else %}odd{% endif %}">
         <div class="p-5">
             <h1>{{ year.name }}</h1>
             <div class="slide" data-anchor="slide1">
                 <div class="row">
-                    <div class="col-4">
-                        <div class="">
-                            {% if year.position_set|getChairmen|length > 0 %}
-                                <h3><i class="fa fa-crown"></i> Vorstandsvorsitzende(r)</h3>
-                                <div class="ps-5">
-                                    {% for position in year.position_set|getChairmen %}
-                                        {% if position.chairman %}
-                                            <strong>{{ position.person }}</strong><br>
-                                            {{ position.position }}<br><br>
-                                        {% endif %}
-                                    {% endfor %}
-                                </div>
-                                <br>
-                            {% endif %}
-                            {% if year.position_set|getNonChairmen|length > 0 %}
-                            <h3><i class="fa fa-users"></i> Vorstandsteam</h3>
+                    <div class="col-3">
+                        {% if year.position_set|getChairmen|length > 0 %}
+                            <h3><i class="fa fa-crown"></i> Vorstandsvorsitzende(r)</h3>
                             <div class="ps-5">
-                                {% for position in year.position_set|getNonChairmen %}
-                                    {% if not position.chairman %}
+                                {% for position in year.position_set|getChairmen %}
+                                    {% if position.chairman %}
                                         <strong>{{ position.person }}</strong><br>
                                         {{ position.position }}<br><br>
                                     {% endif %}
                                 {% endfor %}
                             </div>
                             <br>
-                            {% endif %}
-                            <h3><i class="fa fa-medal"></i> Ehrungen</h3>
-                            <div class="ps-5">
-                                {% for honour in year.honour_set.all %}
-                                    <strong>{{ honour.person }}</strong><br>
-                                    {{ honour.honour }}<br><br>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <h2 class="mt-0">{% if year.slogan %}{{ year.slogan }}{% else %}Highlights{% endif %}</h2>
-                        {% if year.document and year.document_image %}
-                        <img src="{{ year.document_image.url }}" class="pdf-preview">
-                        <br><br>
-                        <a href="{{ year.document.url }}">
-                            <div class="pdf-label">
-                                <i class="fa fa-file-pdf"></i>  Jahresrückblick als PDF &raquo;
-                            </div>
-                        </a>
                         {% endif %}
-                         <!--div id="myMosaic">
-                            <div class="image-caption">
-                                <img src="/static/img/2022/2022-01-20_Jahresauftakt.jpg" width="100%" height="100%">
-                                <div class="caption">Highlight Veranstaltung 1</div>
+                        {% if year.position_set|getNonChairmen|length > 0 %}
+                        <h3><i class="fa fa-users"></i> Vorstandsteam</h3>
+                        <div class="ps-5">
+                            {% for position in year.position_set|getNonChairmen %}
+                                {% if not position.chairman %}
+                                    <strong>{{ position.person }}</strong><br>
+                                    {{ position.position }}<br><br>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <br>
+                        {% endif %}
+                        {% if year.honour_set.all|length > 0 %}
+                        <h3><i class="fa fa-medal"></i> Ehrungen</h3>
+                        <div class="ps-5">
+                            {% for honour in year.honour_set.all %}
+                                <strong>{{ honour.person }}</strong><br>
+                                {{ honour.honour }}<br><br>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% if year.document and year.document_image %}
+                        <div class="col-md-3">
+                            <h2 class="mt-0">Download</h2>
+                            {% if year.document and year.document_image %}
+                            <img src="{{ year.document_image.url }}" class="pdf-preview">
+                            <br><br>
+                            <a href="{{ year.document.url }}">
+                                <div class="pdf-label">
+                                    <i class="fa fa-file-pdf"></i>  Jahresrückblick als PDF &raquo;
+                                </div>
+                            </a>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-5">
+                    {% else %}
+                    <div class="col-md-8">
+                    {% endif %}
+                        {% if not year.document and year.highlight_set.count == 0 %}
+                            <h3>Leider fehlen uns für {{ year.name }} noch Bilder und Aufzeichnungen!</h3>
+                            Wenn du Bilder, Texte oder Unterlagen aus dem Jahr {{ year.name }} hast, sende sie uns bitte an "<em>presse@wj-freiburg.de</em>"!
+                        {% else %}
+                            <h2 class="mt-0">{% if year.slogan %}{{ year.slogan }}{% else %}Highlights{% endif %}</h2>
+                        {% endif %}
+                        {% for highlight in year.highlight_set.all|limit:3 %}
+                            <div class="row m-4 bordered">
+                                <div class="col-md-3" style="background-image: url({{ highlight.image.url }});background-size: cover;background-position: center">
+                                </div>
+                                <div class="col-md-9">
+                                    <h3>{{ highlight.title }}</h3>
+                                    <div class="p-2">
+                                        <i class="far fa-calendar"></i> {{ highlight.date|date:"d.m.Y" }}<br>
+                                    </div>
+                                    <div class="p-2">
+                                        <i class="fa fa-map-location-dot"></i> {{ highlight.location }}<br>
+                                    </div>
+                                    <p>{{ highlight.description|safe|truncatechars:350 }}</p>
+                                </div>
                             </div>
-                            <div class="image-caption">
-                                <img src="/static/img/2022/2022-03-14_BGM_Christina_Obergföll.jpg" width="100%" height="100%">
-                                <div class="caption">Highlight Veranstaltung 1</div>
-                            </div>
-                            <div class="image-caption">
-                                <img src="/static/img/2022/2022-04-07_LUDOKI_Workshop.JPG" width="100%" height="100%">
-                                <div class="caption">Highlight Veranstaltung 1</div>
-                            </div>
-                            <div class="image-caption">
-                                <img src="/static/img/2022/2022-06-08-12_EUKO_Brügge.jpeg" width="100%" height="100%">
-                                <div class="caption">Highlight Veranstaltung 1</div>
-                            </div>
-                            <div class="image-caption">
-                                <img src="/static/img/2022/2022-07-21_ Sommerfest-1.jpg" width="100%" height="100%">
-                                <div class="caption">Highlight Veranstaltung 1</div>
-                            </div>
-                            <div class="image-caption">
-                            <img src="/static/img/2022/2022-07-28_Besichtigung_VoBa.jpg" width="100%" height="100%">
-                                <div class="caption">Highlight Veranstaltung 1</div>
-                            </div>
-                            <div class="image-caption">
-                                <img src="/static/img/2022/2022-10-05_Kochevent.jpg" width="100%" height="100%">
-                                <div class="caption">Highlight Veranstaltung 1</div>
-                            </div>
-                            <div class="image-caption">
-                                <img src="/static/img/2022/2022-10-15_Rouge_et_noir_1.jpg" width="100%" height="100%">
-                                <div class="caption">Highlight Veranstaltung 1</div>
-                            </div>
-                            <div class="image-caption">
-                                <img src="/static/img/2022/2022-10-15_Rouge_et_noir_2.jpg" width="100%" height="100%">
-                                <div class="caption">Highlight Veranstaltung 1</div>
-                            </div>
-                            <div class="image-caption">
-                                <img src="/static/img/2022/2022-11-09_Unternehmen-Zukunft-Kestenholz.jpg" width="100%" height="100%">
-                                <div class="caption">Highlight Veranstaltung 1</div>
-                            </div>
-                            <div class="image-caption">
-                                <img src="/static/img/2022/2022-12-20_Übergabe_Spende_DRK-Freiburg.jpg" width="100%" height="100%">
-                                <div class="caption">Highlight Veranstaltung 1</div>
-                            </div>
-                            
-                        </div-->
+                        {% endfor %}
                     </div>
                 </div>
             </div>
+            {% if year.highlight_set.count > 3 %}
             <div class="slide" data-anchor="slide2">
-                <h2>Events</h2>
+                <h2>Weitere Events</h2>
+                <div class="row">
+                    {% for highlight in year.highlight_set.all|startat:3 %}
+                    <div class="col-6">
+                        <div class="row m-4 bordered">
+                            <div class="col-md-3" style="background-image: url({{ highlight.image.url }});background-size: cover;">
+                            </div>
+                            <div class="col-md-9">
+                                <h3>{{ highlight.title }}</h3>
+                                <div class="p-2">
+                                    <i class="far fa-calendar"></i> {{ highlight.date|date:"d.m.Y" }}<br>
+                                </div>
+                                <div class="p-2">
+                                    <i class="fa fa-map-location-dot"></i> {{ highlight.location }}<br>
+                                </div>
+                                <p>{{ highlight.description|safe|truncatechars:350 }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
+            {% endif %}
         </div>
     </section>
     {% endfor %}
+
+    <section class="section odd">
+        <div class="p-5">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="/static/img/logo.svg" width="400" alt="Wirtschaftsjunioren Freiburg" class="mb-5" />
+                </div>
+                <div class="col-md-6" style="text-align: right;">
+                </div>
+                <div class="col-md-12">
+                    <h2 class="mt-5">Der digitale Jahresrückblick...</h2>
+                    <h3 style="color: lightgrey; font-size: 3em;">...mit freundlicher Unterstützung der SD Software-Design GmbH</h3>
+                    <br>
+                    <img src="/static/img/sd.png" width="600" alt="SD Software-Design GmbH" class="mb-5" />
+                </div>
+            </div>
+        </div>
+        <img id="skyline" src="/static/img/skyline1_blue.svg" width="100%;">
+    </section>
 </div>
-
-
-<script type="text/javascript">
-    $(document).ready(function() {
-
-        $('#myMosaic').Mosaic({
-            maxRows: 2,
-            maxRowHeightPolicy: 'crop',
-            innerGap: 5,
-            refitOnResize: true,
-            refitOnResizeDelay: false,
-        });
-
-        var myFullpage = new fullpage('#fullpage', {
-            licenseKey: 'gplv3-license',
-            navigation: true,
-            navigationPosition: 'right',
-            showActiveTooltip: true,
-            responsiveWidth: 900,
-            onLeave: function(origin,destination,direction,trigger){
-                if($(destination.item).hasClass('even')){
-                    $('#fp-nav').removeClass('odd');
-                    $('#fp-nav').addClass('even');
-                } else {
-                    $('#fp-nav').removeClass('even');
-                    $('#fp-nav').addClass('odd');
-                };
-            }
-        });
-    });
-</script>
