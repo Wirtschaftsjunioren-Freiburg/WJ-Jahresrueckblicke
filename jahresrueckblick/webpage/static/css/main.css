@@ -13,6 +13,10 @@ h2 {
     font-size: 4.5em;
 }
 
+h3.action {
+    color: lightgrey;
+    font-size: 4em;
+}
 
 a
 a:hover,
@@ -141,4 +145,21 @@ section.odd {
 
 #fp-nav ul li .fp-tooltip {
     opacity: 100 !important;
+}
+
+/* media query max widht 900px */
+@media screen and (max-width: 1496px) {
+    h1 {
+        font-size: 6em;
+    }
+    h2 {
+        font-size: 2.5em;
+    }  
+    h3.action {
+        color: lightgrey;
+        font-size: 2em;
+    }
+    section {
+        padding: 0px 80px 0px 50px;
+    }
 }

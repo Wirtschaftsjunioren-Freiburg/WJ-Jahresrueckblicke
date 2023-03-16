@@ -16,16 +16,17 @@
     <section class="section odd">
         <div class="p-5">
             <div class="row">
-                <div class="col-md-6">
-                    <img src="/static/img/logo.svg" width="400" alt="Wirtschaftsjunioren Freiburg" class="mb-5" />
+                <div class="col-lg-4 col-md-5">
+                    <img src="/static/img/logo.svg" width="100%" alt="Wirtschaftsjunioren Freiburg" class="mb-5" />
                 </div>
-                <div class="col-md-6" style="text-align: right;">
+                <div class="col-lg-8 col-md-7" style="text-align: right;">
                     <small>Mit freundlicher Unterstützung der <a href="https://software-design.de">SD Software-Design GmbH</a></small>
                 </div>
                 <div class="col-md-12">
                     <h1 class="mt-5 pt-5 pb-0 mb-0">{{ years.0.year|subtract:years.last.year|add:1 }} Jahre</h1>
                     <h2 class="mt-0">Wirtschaftsjunioren Freiburg</h2>
-                    <a href="#{{ years.0.year }}" style="text-decoration: none;"><h3 style="color: lightgrey; font-size: 4em;"><i class="fa fa-angles-down fa-beat fade-scale"></i> Scrollen, um den interaktiven Rückblicke zu entdecken</h3></a>
+                    <a href="#{{ years.0.year }}" style="text-decoration: none;">
+                        <h3 class="action"><i class="fa fa-angles-down fa-beat fade-scale"></i> Scrollen, um den interaktiven Rückblicke zu entdecken</h3></a>
                 </div>
             </div>
         </div>
