@@ -22,4 +22,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # include webpage urls
     path('', index),
-]   + static('media/', document_root='media/')
+]   + static('media/', document_root='mediafiles/')
