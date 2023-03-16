@@ -43,7 +43,7 @@ a:visited {
 /** Sections **/
 section {
     padding: 0px 130px 0px 100;
-    overflow-y: hidden;
+    overflow: hidden;
 }
 
 section.even {
