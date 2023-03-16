@@ -1,4 +1,5 @@
 venv
+jahresrueckblick/mediafiles/
 jahresrueckblick/media/images
 jahresrueckblick/media/pdfs
 jahresrueckblick/db.sqlite3

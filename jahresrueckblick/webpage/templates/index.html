@@ -23,7 +23,7 @@
                     <small>Mit freundlicher Unterstützung der <a href="https://software-design.de">SD Software-Design GmbH</a></small>
                 </div>
                 <div class="col-md-12">
-                    <h1 class="mt-5 pt-5 pb-0 mb-0">{{ years.0.year|subtract:years.last.year|add:1 }} Jahre</h1>
+                    <h1 class="mt-3 pt-3 pb-0 mb-0">{{ years.0.year|subtract:years.last.year|add:1 }} Jahre</h1>
                     <h2 class="mt-0">Wirtschaftsjunioren Freiburg</h2>
                     <a href="#{{ years.0.year }}" style="text-decoration: none;">
                         <h3 class="action"><i class="fa fa-angles-down fa-beat fade-scale"></i> Scrollen, um den interaktiven Rückblicke zu entdecken</h3></a>
@@ -101,9 +101,7 @@
                                 <div class="col-md-9">
                                     <h3>{{ highlight.title }}</h3>
                                     <div class="p-2">
-                                        <i class="far fa-calendar"></i> {{ highlight.date|date:"d.m.Y" }}<br>
-                                    </div>
-                                    <div class="p-2">
+                                        <i class="far fa-calendar"></i> {{ highlight.date|date:"d.m.Y" }} 
                                         <i class="fa fa-map-location-dot"></i> {{ highlight.location }}<br>
                                     </div>
                                     <p>{{ highlight.description|safe|truncatechars:350 }}</p>
@@ -125,10 +123,7 @@
                             <div class="col-md-9">
                                 <h3>{{ highlight.title }}</h3>
                                 <div class="p-2">
-                                    <i class="far fa-calendar"></i> {{ highlight.date|date:"d.m.Y" }}<br>
-                                </div>
-                                <div class="p-2">
-                                    <i class="fa fa-map-location-dot"></i> {{ highlight.location }}<br>
+                                    <i class="far fa-calendar"></i> {{ highlight.date|date:"d.m.Y" }} <i class="fa fa-map-location-dot"></i> {{ highlight.location }}<br>
                                 </div>
                                 <p>{{ highlight.description|safe|truncatechars:350 }}</p>
                             </div>
