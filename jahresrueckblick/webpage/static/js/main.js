@@ -19,3 +19,10 @@ $(document).ready(function() {
         }
     });
 });
+
+function showMore(el){
+    var parent = $(el).parent().parent();
+    parent.find('.long').removeClass('d-none');
+    parent.find('.short').addClass('d-none');
+    $(el).hide();
+}

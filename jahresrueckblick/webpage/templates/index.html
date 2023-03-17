@@ -101,10 +101,17 @@
                                 <div class="col-md-9">
                                     <h3>{{ highlight.title }}</h3>
                                     <div class="p-2">
-                                        <i class="far fa-calendar"></i> {{ highlight.date|date:"d.m.Y" }} 
-                                        <i class="fa fa-map-location-dot"></i> {{ highlight.location }}<br>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <i class="far fa-calendar"></i> {{ highlight.date|date:"d.m.Y" }} 
+                                            </div>
+                                            <div class="col-6">
+                                                <i class="fa fa-map-location-dot"></i> {{ highlight.location }}<br>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <p>{{ highlight.description|safe|truncatechars:350 }}</p>
+                                    <p class="short">{{ highlight.description|safe|truncatechars:200 }} <a onclick="showMore(this)"><strong>Mehr lesen &raquo;</strong></a></p>
+                                    <p class="long d-none">{{ highlight.description|safe }}</p>
                                 </div>
                             </div>
                         {% endfor %}
@@ -125,7 +132,8 @@
                                 <div class="p-2">
                                     <i class="far fa-calendar"></i> {{ highlight.date|date:"d.m.Y" }} <i class="fa fa-map-location-dot"></i> {{ highlight.location }}<br>
                                 </div>
-                                <p>{{ highlight.description|safe|truncatechars:350 }}</p>
+                                <p class="short">{{ highlight.description|safe|truncatechars:350 }} <a onclick="showMore(this)">Mehr lesen &raquo;</a></p>
+                                <p class="long">{{ highlight.description|safe }}</p>
                             </div>
                         </div>
                     </div>
@@ -147,7 +155,7 @@
                 </div>
                 <div class="col-md-12">
                     <h2 class="mt-5">Der digitale Jahresrückblick...</h2>
-                    <h3 style="color: lightgrey; font-size: 3em;">...mit freundlicher Unterstützung der SD Software-Design GmbH</h3>
+                    <h3 style="color: lightgrey; font-size: 2em;">...mit freundlicher Unterstützung der SD Software-Design GmbH</h3>
                     <br>
                     <img src="/static/img/sd.png" width="600" alt="SD Software-Design GmbH" class="mb-5" />
                 </div>
