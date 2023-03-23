@@ -91,6 +91,13 @@ section.odd {
     border: 1px solid white;
 }
 
+.bordered .image {
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+}
+
 /** Captions **/
 .image-caption img {
     z-index: -999;    

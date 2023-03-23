@@ -1,5 +1,8 @@
 <div class="row m-4 bordered">
-    <div class="col-12 col-xl-3" style="background-image: url({{ highlight.image.url }});background-size: cover;background-position: center">
+    <div class="col-12 col-xl-3">
+        <a href="{{ highlight.image.url }}" data-lightbox="image-{{ highlight.date|date:"Y" }}" data-title="{{ highlight.title }}">
+            <div class="image" style="background-image: url({{ highlight.image.url }});"></div>
+        </a>
     </div>
     <div class="col-md-9">
         <h3>{{ highlight.title }}</h3>
