@@ -1,6 +1,6 @@
 <div class="row m-4 bordered">
     <div class="col-12 col-xl-3">
-        <a href="{{ highlight.image.url }}" data-lightbox="image-{{ highlight.date|date:"Y" }}" data-title="{{ highlight.title }}">
+        <a href="{{ highlight.image.url }}" data-lightbox="image-{{ highlight.date|date:"Y-m-y" }}" data-title="{{ highlight.title }}">
             <div class="image" style="background-image: url({{ highlight.image.url }});"></div>
         </a>
     </div>
