@@ -29,6 +29,7 @@ h3.action {
 
 a {
     cursor: pointer !important;
+    text-decoration: none;
 }
 
 .odd a:hover,
@@ -96,7 +97,7 @@ section.odd {
     background-position: center;
     height: 100%;
     width: 100%;
-    margin-left: -10px;
+    margin-left: -11px;
 }
 
 /** Captions **/
