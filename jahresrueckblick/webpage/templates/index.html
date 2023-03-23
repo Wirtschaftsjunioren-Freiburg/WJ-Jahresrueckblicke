@@ -3,9 +3,11 @@
 <link rel="stylesheet" type="text/css" href="/static/css/main.css" />
 <link rel="stylesheet" type="text/css" href="/static/plugins/fullpage/fullpage.css" />
 <link rel="stylesheet" type="text/css" href="/static/plugins/bootstrap/css/bootstrap-grid.min.css" />
+<link rel="stylesheet" type="text/css" href="/static/plugins/lightbox2/css/lightbox.min.css" />
 <script type="text/javascript" src="/static/plugins/fontawesome/js/all.min.js"></script>
 <script type="text/javascript" src="/static/plugins/fullpage/fullpage.js"></script>
 <script type="text/javascript" src="/static/plugins/jquery/jquery-3.6.3.min.js"></script>
+<script type="text/javascript" src="/static/plugins/lightbox2/js/lightbox.min.js"></script>
 <script>
     const anchors = ['start',{% for year in years %}'{{ year.year }}'{% if not forloop.last %},{% endif %}{% endfor %},'ende'];
     const slides = ['Start',{% for year in years %}'{{ year.name }}'{% if not forloop.last %},{% endif %}{% endfor %},'Ende'];
@@ -93,29 +95,7 @@
                             <h2 class="mt-0">{% if year.slogan %}{{ year.slogan }}{% else %}Highlights{% endif %}</h2>
                         {% endif %}
                         {% for highlight in year.highlight_set.all|limit:3 %}
-                            <div class="row m-4 bordered">
-                                <div class="col-12 col-xl-3" style="background-image: url({{ highlight.image.url }});background-size: cover;background-position: center">
-                                </div>
-                                <div class="col-md-9">
-                                    <h3>{{ highlight.title }}</h3>
-                                    <div class="p-2">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <strong>
-                                                    <i class="far fa-calendar"></i> {{ highlight.date|date:"d F Y" }} 
-                                                </strong>
-                                            </div>
-                                            <div class="col-6">
-                                                <strong>
-                                                    <i class="fa fa-map-location-dot"></i> {{ highlight.location }}<br>
-                                                </strong>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="short">{{ highlight.description|safe|truncatechars:200 }}<br>{% if highlight.description|length > 200 %}<a onclick="showMore(this)"><strong>Mehr lesen &raquo;</strong></a>{% endif %}</p>
-                                    <p class="long d-none">{{ highlight.description|safe }}</p>
-                                </div>
-                            </div>
+                           {% include 'highlight.html' %}
                         {% endfor %}
                     </div>
                 </div>
@@ -126,29 +106,7 @@
                 <div class="row">
                     {% for highlight in year.highlight_set.all|startat:3 %}
                     <div class="col-6">
-                        <div class="row m-4 bordered">
-                            <div class="col-md-3" style="background-image: url({{ highlight.image.url }});background-size: cover;">
-                            </div>
-                            <div class="col-md-9">
-                                <h3>{{ highlight.title }}</h3>
-                                <div class="p-2">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <strong>
-                                                <i class="far fa-calendar"></i> {{ highlight.date|date:"d F Y" }} 
-                                            </strong>
-                                        </div>
-                                        <div class="col-6">
-                                            <strong>
-                                                <i class="fa fa-map-location-dot"></i> {{ highlight.location }}<br>
-                                            </strong>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="short">{{ highlight.description|safe|truncatechars:300 }}<br>{% if highlight.description|length > 300 %}<a onclick="showMore(this)"><strong>Mehr lesen &raquo;</strong></a>{% endif %}</p>
-                                <p class="long d-none">{{ highlight.description|safe }}</p>
-                            </div>
-                        </div>
+                        {% include 'highlight.html' %}
                     </div>
                     {% endfor %}
                 </div>

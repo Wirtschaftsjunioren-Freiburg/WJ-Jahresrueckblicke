@@ -27,12 +27,22 @@ h3.action {
     font-size: 4em;
 }
 
-a
-a:hover,
-a:active,
-a:focus,
-a:visited {
+a {
+    cursor: pointer !important;
+}
+
+.odd a:hover,
+.odd a:active,
+.odd a:focus,
+.odd a:visited {
     color: rgb(1, 52, 147);
+}
+
+.even a:hover,
+.even a:active,
+.even a:focus,
+.even a:visited {
+    color: white;
 }
 
 .odd h1,

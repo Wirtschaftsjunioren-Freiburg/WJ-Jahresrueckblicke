@@ -1,0 +1,23 @@
+<div class="row m-4 bordered">
+    <div class="col-12 col-xl-3" style="background-image: url({{ highlight.image.url }});background-size: cover;background-position: center">
+    </div>
+    <div class="col-md-9">
+        <h3>{{ highlight.title }}</h3>
+        <div class="p-2">
+            <div class="row">
+                <div class="col-6">
+                    <strong>
+                        <i class="far fa-calendar"></i> {{ highlight.date|date:"d F Y" }} 
+                    </strong>
+                </div>
+                <div class="col-6">
+                    <strong>
+                        <i class="fa fa-map-location-dot"></i> {{ highlight.location }}<br>
+                    </strong>
+                </div>
+            </div>
+        </div>
+        <p class="short">{{ highlight.description|safe|truncatechars:200 }}<br>{% if highlight.description|length > 200 %}<a onclick="showMore(this)"><strong>Mehr lesen &raquo;</strong></a>{% endif %}</p>
+        <p class="long d-none">{{ highlight.description|safe }}</p>
+    </div>
+</div>
