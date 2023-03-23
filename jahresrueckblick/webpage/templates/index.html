@@ -84,10 +84,8 @@
                             </a>
                             {% endif %}
                         </div>
-                        <div class="col-12 col-md-6 col-xl-5">
-                    {% else %}
-                    <div class="col-12 col-md-6 col-xl-8">
                     {% endif %}
+                    <div class="col-12 col-md-6 col-xl-6">
                         {% if not year.document and year.highlight_set.count == 0 %}
                             <h3>Leider fehlen uns für {{ year.name }} noch Bilder und Aufzeichnungen!</h3>
                             Wenn du Bilder, Texte oder Unterlagen aus dem Jahr {{ year.name }} hast, sende sie uns bitte an "<em>presse@wj-freiburg.de</em>"!
@@ -103,14 +101,18 @@
                                     <div class="p-2">
                                         <div class="row">
                                             <div class="col-6">
-                                                <i class="far fa-calendar"></i> {{ highlight.date|date:"d.m.Y" }} 
+                                                <strong>
+                                                    <i class="far fa-calendar"></i> {{ highlight.date|date:"d F Y" }} 
+                                                </strong>
                                             </div>
                                             <div class="col-6">
-                                                <i class="fa fa-map-location-dot"></i> {{ highlight.location }}<br>
+                                                <strong>
+                                                    <i class="fa fa-map-location-dot"></i> {{ highlight.location }}<br>
+                                                </strong>
                                             </div>
                                         </div>
                                     </div>
-                                    <p class="short">{{ highlight.description|safe|truncatechars:200 }} <a onclick="showMore(this)"><strong>Mehr lesen &raquo;</strong></a></p>
+                                    <p class="short">{{ highlight.description|safe|truncatechars:200 }}<br>{% if highlight.description|length > 200 %}<a onclick="showMore(this)"><strong>Mehr lesen &raquo;</strong></a>{% endif %}</p>
                                     <p class="long d-none">{{ highlight.description|safe }}</p>
                                 </div>
                             </div>
@@ -130,10 +132,21 @@
                             <div class="col-md-9">
                                 <h3>{{ highlight.title }}</h3>
                                 <div class="p-2">
-                                    <i class="far fa-calendar"></i> {{ highlight.date|date:"d.m.Y" }} <i class="fa fa-map-location-dot"></i> {{ highlight.location }}<br>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <strong>
+                                                <i class="far fa-calendar"></i> {{ highlight.date|date:"d F Y" }} 
+                                            </strong>
+                                        </div>
+                                        <div class="col-6">
+                                            <strong>
+                                                <i class="fa fa-map-location-dot"></i> {{ highlight.location }}<br>
+                                            </strong>
+                                        </div>
+                                    </div>
                                 </div>
-                                <p class="short">{{ highlight.description|safe|truncatechars:350 }} <a onclick="showMore(this)">Mehr lesen &raquo;</a></p>
-                                <p class="long">{{ highlight.description|safe }}</p>
+                                <p class="short">{{ highlight.description|safe|truncatechars:300 }}<br>{% if highlight.description|length > 300 %}<a onclick="showMore(this)"><strong>Mehr lesen &raquo;</strong></a>{% endif %}</p>
+                                <p class="long d-none">{{ highlight.description|safe }}</p>
                             </div>
                         </div>
                     </div>
