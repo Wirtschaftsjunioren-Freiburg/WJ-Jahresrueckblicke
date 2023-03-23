@@ -20,7 +20,7 @@
                 </div>
             </div>
         </div>
-        <p class="short">{{ highlight.description|safe|truncatechars:200 }}<br>{% if highlight.description|length > 200 %}<a onclick="showMore(this)"><strong>Mehr lesen &raquo;</strong></a>{% endif %}</p>
+        <p class="short">{{ highlight.description|safe|truncatechars:300 }}<br>{% if highlight.description|length > 300 %}<a onclick="showMore(this)"><strong>Mehr lesen &raquo;</strong></a>{% endif %}</p>
         <p class="long d-none">{{ highlight.description|safe }}</p>
     </div>
 </div>

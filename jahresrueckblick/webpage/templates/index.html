@@ -104,7 +104,19 @@
             <div class="slide" data-anchor="slide2">
                 <h2>Weitere Events</h2>
                 <div class="row">
-                    {% for highlight in year.highlight_set.all|startat:3 %}
+                    {% for highlight in year.highlight_set.all|startat:3|limit:6 %}
+                    <div class="col-6">
+                        {% include 'highlight.html' %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+            {% if year.highlight_set.count > 9 %}
+            <div class="slide" data-anchor="slide3">
+                <h2>Weitere Events</h2>
+                <div class="row">
+                    {% for highlight in year.highlight_set.all|startat:9 %}
                     <div class="col-6">
                         {% include 'highlight.html' %}
                     </div>
