@@ -84,6 +84,10 @@ section.odd {
     line-height: 1.4em;
 }
 
+.positions h3 {
+    font-size: 1.1em;
+} 
+
 .odd .bordered {
     border: 1px solid rgb(1, 52, 147);
 }
