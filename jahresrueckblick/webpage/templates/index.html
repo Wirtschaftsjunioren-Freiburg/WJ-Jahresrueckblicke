@@ -40,38 +40,44 @@
             <h1>{{ year.name }}</h1>
             <div class="slide" data-anchor="slide1">
                 <div class="row">
-                    <div class="col-12 col-md-6 col-xl-3 positions">
-                        {% if year.position_set|getChairmen|length > 0 %}
-                            <h3><i class="fa fa-crown"></i> Vorstandsvorsitzende(r)</h3>
-                            <div class="ps-5">
-                                {% for position in year.position_set|getChairmen %}
-                                    {% if position.chairman %}
-                                        <strong>{{ position.person }}</strong><br>
-                                        {{ position.position }}<br><br>
-                                    {% endif %}
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-                        {% if year.position_set|getNonChairmen|length > 0 %}
-                        <h3><i class="fa fa-users"></i> Vorstandsteam</h3>
-                        <div class="ps-5">
-                            {% for position in year.position_set|getNonChairmen %}
-                                {% if not position.chairman %}
-                                    <strong>{{ position.person }}</strong><br>
-                                    {{ position.position }}<br><br>
+                    <div class="col-12 col-lg-6 col-xl-3 positions">
+                        <div class="row">
+                            <div class="col-6 col-lg-12">
+                                {% if year.position_set|getChairmen|length > 0 %}
+                                    <h3><i class="fa fa-crown"></i> Vorstandsvorsitzende(r)</h3>
+                                    <div class="ps-5">
+                                        {% for position in year.position_set|getChairmen %}
+                                            {% if position.chairman %}
+                                                <strong>{{ position.person }}</strong><br>
+                                                {{ position.position }}<br><br>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
                                 {% endif %}
-                            {% endfor %}
+                                {% if year.position_set|getNonChairmen|length > 0 %}
+                                <h3><i class="fa fa-users"></i> Vorstandsteam</h3>
+                                <div class="ps-5">
+                                    {% for position in year.position_set|getNonChairmen %}
+                                        {% if not position.chairman %}
+                                            <strong>{{ position.person }}</strong><br>
+                                            {{ position.position }}<br><br>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="col-6 col-lg-12">
+                                {% if year.honour_set.all|length > 0 %}
+                                <h3><i class="fa fa-medal"></i> Ehrungen</h3>
+                                <div class="ps-5">
+                                    {% for honour in year.honour_set.all %}
+                                        <strong>{{ honour.person }}</strong><br>
+                                        {{ honour.honour }}<br><br>
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
                         </div>
-                        {% endif %}
-                        {% if year.honour_set.all|length > 0 %}
-                        <h3><i class="fa fa-medal"></i> Ehrungen</h3>
-                        <div class="ps-5">
-                            {% for honour in year.honour_set.all %}
-                                <strong>{{ honour.person }}</strong><br>
-                                {{ honour.honour }}<br><br>
-                            {% endfor %}
-                        </div>
-                        {% endif %}
                     </div>
                     {% if year.document and year.document_image %}
                         <div class="col-12 col-md-3">
