@@ -214,4 +214,9 @@ section.odd {
     .pdf-preview {
         width: 260px;
     }
+
+    .short,
+    .long {
+        font-size: 0.9em;
+    }
 }

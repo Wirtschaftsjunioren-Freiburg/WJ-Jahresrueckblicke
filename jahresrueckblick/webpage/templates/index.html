@@ -74,7 +74,7 @@
                         {% endif %}
                     </div>
                     {% if year.document and year.document_image %}
-                        <div class="col-md-3">
+                        <div class="col-12 col-md-3">
                             <h2 class="mt-0">Download</h2>
                             {% if year.document and year.document_image %}
                             <img src="{{ year.document_image.url }}" class="pdf-preview">
@@ -87,7 +87,7 @@
                             {% endif %}
                         </div>
                     {% endif %}
-                    <div class="col-12 col-md-6 col-xl-6">
+                    <div class="col-12 col-lg-6 col-xl-6">
                         {% if not year.document and year.highlight_set.count == 0 %}
                             <h3>Leider fehlen uns für {{ year.name }} noch Bilder und Aufzeichnungen!</h3>
                             Wenn du Bilder, Texte oder Unterlagen aus dem Jahr {{ year.name }} hast, sende sie uns bitte an "<em>presse@wj-freiburg.de</em>"!
