@@ -80,17 +80,25 @@
                         </div>
                     </div>
                     {% if year.document and year.document_image %}
-                        <div class="col-12 col-md-3">
-                            <h2 class="mt-0">Download</h2>
-                            {% if year.document and year.document_image %}
-                            <img src="{{ year.document_image.url }}" class="pdf-preview">
-                            <br><br>
-                            <a href="{{ year.document.url }}">
-                                <div class="pdf-label">
-                                    <i class="fa fa-file-pdf"></i>  Jahresrückblick als PDF &raquo;
+                        <div class="col-12 col-lg-3">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h2 class="mt-1">Download</h2>
                                 </div>
-                            </a>
-                            {% endif %}
+                                <div class="col-6 col-lg-12">
+                                    {% if year.document and year.document_image %}
+                                    <img src="{{ year.document_image.url }}" class="pdf-preview">
+                                    <br><br>
+                                </div>
+                                <div class="col-6 col-lg-12">
+                                    <a href="{{ year.document.url }}">
+                                        <div class="pdf-label">
+                                            <i class="fa fa-file-pdf"></i>  Jahresrückblick als PDF &raquo;
+                                        </div>
+                                    </a>
+                                    {% endif %}
+                                </div>
+                            </div>
                         </div>
                     {% endif %}
                     <div class="col-12 col-lg-6 col-xl-6">
@@ -98,7 +106,7 @@
                             <h3>Leider fehlen uns für {{ year.name }} noch Bilder und Aufzeichnungen!</h3>
                             Wenn du Bilder, Texte oder Unterlagen aus dem Jahr {{ year.name }} hast, sende sie uns bitte an "<em>presse@wj-freiburg.de</em>"!
                         {% else %}
-                            <h2 class="mt-0">{% if year.slogan %}{{ year.slogan }}{% else %}Highlights{% endif %}</h2>
+                            <h2 class="mt-1">{% if year.slogan %}{{ year.slogan }}{% else %}Highlights{% endif %}</h2>
                         {% endif %}
                         {% for highlight in year.highlight_set.all|limit:3 %}
                            {% include 'highlight.html' %}
