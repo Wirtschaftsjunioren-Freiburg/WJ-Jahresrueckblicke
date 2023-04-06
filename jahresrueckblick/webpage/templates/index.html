@@ -85,12 +85,12 @@
                                 <div class="col-12">
                                     <h2 class="mt-3 mt-lg-0">Download</h2>
                                 </div>
-                                <div class="col-6 col-lg-12">
+                                <div class="col-12 col-sm-6 col-lg-12">
                                     {% if year.document and year.document_image %}
                                     <img src="{{ year.document_image.url }}" class="pdf-preview">
                                     <br><br>
                                 </div>
-                                <div class="col-6 col-lg-12">
+                                <div class="col-12 col-sm-6 col-lg-12">
                                     <a href="{{ year.document.url }}">
                                         <div class="pdf-label">
                                             <i class="fa fa-file-pdf"></i>  Jahresrückblick als PDF &raquo;
@@ -118,7 +118,7 @@
             </div>
             {% if year.highlight_set.count > 3 %}
             <div class="slide" data-anchor="slide2">
-                <h2>Weitere Events</h2>
+                <h2>Weitere Highlights</h2>
                 <div class="row">
                     {% for highlight in year.highlight_set.all|startat:3|limit:6 %}
                     <div class="col-6">
@@ -130,7 +130,7 @@
             {% endif %}
             {% if year.highlight_set.count > 9 %}
             <div class="slide" data-anchor="slide3">
-                <h2>Weitere Events</h2>
+                <h2>Weitere Highlights</h2>
                 <div class="row">
                     {% for highlight in year.highlight_set.all|startat:9 %}
                     <div class="col-6">

@@ -1,22 +1,18 @@
 <div class="row m-4 bordered">
-    <div class="col-12 col-xl-3">
+    <div class="col-3">
         <a href="{{ highlight.image.url }}" data-lightbox="image-{{ highlight.date|date:"Y-m-y" }}" data-title="{{ highlight.title }}">
             <div class="image" style="background-image: url({{ highlight.image.url }});"></div>
         </a>
     </div>
-    <div class="col-md-9">
-        <h3>{{ highlight.title }}</h3>
-        <div class="p-2">
+    <div class="col-9">
+        <h3 class="my-2 my-lg-3">{{ highlight.title }}</h3>
+        <div class="p-1">
             <div class="row">
                 <div class="col-6">
-                    <strong>
-                        <i class="far fa-calendar"></i> {{ highlight.date|date:"d F Y" }} 
-                    </strong>
+                    <i class="far fa-calendar"></i> {{ highlight.date|date:"d F Y" }} 
                 </div>
                 <div class="col-6">
-                    <strong>
-                        <i class="fa fa-map-location-dot"></i> {{ highlight.location }}<br>
-                    </strong>
+                    <i class="fa fa-map-location-dot"></i> {{ highlight.location }}<br>
                 </div>
             </div>
         </div>
