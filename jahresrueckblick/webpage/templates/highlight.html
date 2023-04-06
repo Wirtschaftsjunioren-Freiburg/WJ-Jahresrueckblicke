@@ -1,10 +1,10 @@
-<div class="row m-4 bordered">
-    <div class="col-3">
+<div class="row {% if small %}m-3{% else %}m-2{% endif %} bordered">
+    <div class="{% if small %}col-3{% else %}col-4{% endif %}">
         <a href="{{ highlight.image.url }}" data-lightbox="image-{{ highlight.date|date:"Y-m-y" }}" data-title="{{ highlight.title }}">
             <div class="image" style="background-image: url({{ highlight.image.url }});"></div>
         </a>
     </div>
-    <div class="col-9">
+    <div class="{% if small %}col-9{% else %}col-8{% endif %}">
         <h3 class="my-2 my-lg-3">{{ highlight.title }}</h3>
         <div class="p-1">
             <div class="row">
@@ -16,7 +16,7 @@
                 </div>
             </div>
         </div>
-        <p class="short">{{ highlight.description|safe|truncatechars:300 }} {% if highlight.description|length > 300 %}- <a onclick="showMore(this)"><strong>Mehr lesen &raquo;</strong></a>{% endif %}</p>
-        <p class="long d-none">{{ highlight.description|safe }}</p>
+        <p class="short d-none">{{ highlight.description|safe|truncatechars:300 }} {% if highlight.description|length > 300 %}- <a onclick="showMore(this)"><strong>Mehr lesen &raquo;</strong></a>{% endif %}</p>
+        <p class="long">{{ highlight.description|safe }}</p>
     </div>
 </div>
