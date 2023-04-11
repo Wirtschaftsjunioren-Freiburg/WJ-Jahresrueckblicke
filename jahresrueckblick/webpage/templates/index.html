@@ -121,7 +121,7 @@
                 <h2 class="mt-0 mb-4">Weitere Highlights</h2>
                 <div class="row">
                     {% for highlight in year.highlight_set.all|startat:3|limit:6 %}
-                    <div class="col-6">
+                    <div class="col-12 col-lg-6">
                         {% include 'highlight.html' %}
                     </div>
                     {% endfor %}
@@ -133,7 +133,7 @@
                 <h2 class="mt-0 mb-4">Weitere Highlights</h2>
                 <div class="row">
                     {% for highlight in year.highlight_set.all|startat:9 %}
-                    <div class="col-6">
+                    <div class="col-12 col-lg-6">
                         {% include 'highlight.html' %}
                     </div>
                     {% endfor %}

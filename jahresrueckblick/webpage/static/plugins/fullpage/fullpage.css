@@ -241,11 +241,6 @@ html.fp-enabled,
     max-height: none;
 }
 
-.fp-is-overflow .fp-overflow.fp-auto-height-responsive,
-.fp-is-overflow .fp-overflow.fp-auto-height,
-.fp-is-overflow > .fp-overflow{
-    overflow-y: auto;
-}
 .fp-overflow{
     outline:none;
 }
