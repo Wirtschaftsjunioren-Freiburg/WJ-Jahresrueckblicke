@@ -212,8 +212,8 @@ section.odd {
     }
 
     .positions {
-        font-size: 1.3em;
-        line-height: 1.1em;
+        font-size: 0.8em;
+        line-height: 1.0    em;
     }
 
     .pdf-label {
@@ -235,7 +235,7 @@ section.odd {
 /* media query max widht 900px */
 @media screen and (max-width: 900px) {
     .positions {
-        font-size: 1.1em;
+        font-size: 1.0em;
         line-height: 1.1em;
     }
 }
