@@ -102,7 +102,7 @@
                         </div>
                         <div class="col-12 col-lg-12 col-xl-6">
                     {% else %}
-                    <div class="col-12 col-lg-7 col-xl-9">
+                    <div class="col-12 col-lg-7 col-xl-9 d-none d-lg-block">
                     {% endif %}
                         {% if not year.document and year.highlight_set.count == 0 %}
                             <h3>Leider fehlen uns für {{ year.name }} noch Bilder und Aufzeichnungen!</h3>
@@ -116,9 +116,22 @@
                     </div>
                 </div>
             </div>
+            <div class="slide d-lg-none" data-anchor="slide4">
+                <h2 class="mt-0 mb-4">Unsere Highlights</h2>
+                <div class="row">
+                    <div class="col-12">
+                        Im Jahr {{ year.name }} haben wir folgende besondere Highlights in unserem Kreis organisiert. Swipe nach rechs, um weitere Termine und Events zu sehen.<br><br>
+                    </div>
+                    {% for highlight in year.highlight_set.all|limit:3 %}
+                    <div class="col-12 col-lg-6">
+                        {% include 'highlight.html' %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
             {% if year.highlight_set.count > 3 %}
             <div class="slide" data-anchor="slide2">
-                <h2 class="mt-0 mb-4">Weitere Highlights</h2>
+                <h2 class="mt-0 mb-4">Weitere Termine & Events</h2>
                 <div class="row">
                     {% for highlight in year.highlight_set.all|startat:3|limit:6 %}
                     <div class="col-12 col-lg-6">
@@ -130,7 +143,7 @@
             {% endif %}
             {% if year.highlight_set.count > 9 %}
             <div class="slide" data-anchor="slide3">
-                <h2 class="mt-0 mb-4">Weitere Highlights</h2>
+                <h2 class="mt-0 mb-4">Weitere Termine & Events</h2>
                 <div class="row">
                     {% for highlight in year.highlight_set.all|startat:9 %}
                     <div class="col-12 col-lg-6">
