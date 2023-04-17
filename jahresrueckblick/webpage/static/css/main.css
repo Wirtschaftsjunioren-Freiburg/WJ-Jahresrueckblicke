@@ -88,6 +88,12 @@ section.odd {
     font-size: 1.1em;
 } 
 
+.bordered {
+    height: 160px;
+    overflow: scroll;
+    background-color: linear-gradient(90deg, rgba(36,0,0,0) 85%, rgba(255,255,255,1) 100%);
+}
+
 .odd .bordered {
     border: 1px solid rgb(1, 52, 147);
 }
@@ -207,7 +213,7 @@ section.odd {
 
     .positions {
         font-size: 0.8em;
-        line-height: 1.1em;
+        line-height: 1.0    em;
     }
 
     .pdf-label {
@@ -229,7 +235,7 @@ section.odd {
 /* media query max widht 900px */
 @media screen and (max-width: 900px) {
     .positions {
-        font-size: 1.1em;
+        font-size: 1.0em;
         line-height: 1.1em;
     }
 }
