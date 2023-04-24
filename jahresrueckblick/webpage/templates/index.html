@@ -129,6 +129,20 @@
                     {% endfor %}
                 </div>
             </div>
+            {% if year.image_set.count > 0 %}
+            <div class="slide" data-anchor="slide3">
+                <h2 class="mt-0 mb-4">Bilder und Impressionen</h2>
+                <div class="row">
+                    {% for image in year.image_set.all %}
+                    <div class="col-12 col-md-6 col-lg-2">
+                        <a href="{{ image.image.url }}" data-lightbox="image-{{ image.pk }}" data-title="{{ image.description }}">
+                            <div class="image w-100" style=" height: 300px; background-size: cover; background-image: url({{ image.image.url }});"></div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
             {% if year.highlight_set.count > 3 %}
             <div class="slide" data-anchor="slide2">
                 <h2 class="mt-0 mb-4">Weitere Termine & Events</h2>

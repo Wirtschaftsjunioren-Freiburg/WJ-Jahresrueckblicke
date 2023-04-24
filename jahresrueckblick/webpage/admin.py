@@ -13,6 +13,10 @@ class HighlightResource(resources.ModelResource):
     class Meta:
         model = Highlight
 
+class ImageResource(resources.ModelResource):
+    class Meta:
+        model = Image
+
 class PositionResource(resources.ModelResource): 
     class Meta:
         model = Position
@@ -24,5 +28,6 @@ class HonourResource(resources.ModelResource):
 
 admin.site.register(YearSlide,ImportExportModelAdmin)
 admin.site.register(Highlight,ImportExportModelAdmin)
+admin.site.register(Image,ImportExportModelAdmin)
 admin.site.register(Position,ImportExportModelAdmin)
 admin.site.register(Honour,ImportExportModelAdmin)
