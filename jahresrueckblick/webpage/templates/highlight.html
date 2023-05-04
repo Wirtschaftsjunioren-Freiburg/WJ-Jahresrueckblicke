@@ -1,5 +1,5 @@
 <div class="row {% if small %}m-3{% else %}m-2{% endif %} bordered">
-    <div class="{% if small %}col-3{% else %}col-4{% endif %}">
+    <div class="{% if small %}col-3{% else %}col-4{% endif %}" style="padding-left: 0px !important;">
         <a href="{{ highlight.image.url }}" data-lightbox="image-{{ highlight.date|date:"Y-m-y" }}" data-title="{{ highlight.title }}">
             <img src="{{ highlight.image.url }}" loading="lazy" width="100%">
         </a>
