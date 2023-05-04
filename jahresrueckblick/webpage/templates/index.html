@@ -136,7 +136,7 @@
                     {% for image in year.image_set.all %}
                     <div class="col-12 col-md-6 col-lg-2">
                         <a href="{{ image.image.url }}" data-lightbox="image-{{ image.pk }}" data-title="{{ image.description }}">
-                            <img class="image" src="{{ image.image.url }}" width="300" loading="lazy">
+                            <img class="image" src="{{ image.image.url }}" width="100%" loading="lazy">
                         </a>
                     </div>
                     {% endfor %}
