@@ -1,7 +1,7 @@
 <div class="row {% if small %}m-3{% else %}m-2{% endif %} bordered">
     <div class="{% if small %}col-3{% else %}col-4{% endif %}">
         <a href="{{ highlight.image.url }}" data-lightbox="image-{{ highlight.date|date:"Y-m-y" }}" data-title="{{ highlight.title }}">
-            <div class="image" style="background-image: url({{ highlight.image.url }});"></div>
+            <img src="{{ highlight.image.url }}" loading="lazy" width="100%">
         </a>
     </div>
     <div class="{% if small %}col-9{% else %}col-8{% endif %}">
