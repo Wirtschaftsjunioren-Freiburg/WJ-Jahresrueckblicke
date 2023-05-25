@@ -21,6 +21,6 @@ def cropImage(original):
             image = image.crop(((width-height*16/9)/2, 0, width-(width-height*16/9)/2, height))
         else:
             image = image.crop((0, (height-width*9/16)/2, width, height-(height-width*9/16)/2))
-        image.thumbnail((1200, 1200), Image.ANTIALIAS)
-        image.save(croppedPath)
+        image.thumbnail((500, 500), Image.ANTIALIAS)
+        image.save(croppedPath, quality=80)
         return croppedUrl
