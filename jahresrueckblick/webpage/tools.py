@@ -3,7 +3,7 @@ from PIL import Image
 from django.conf import settings
 
 def cropImage(original):
-    translation_table = str.maketrans({'ä': 'ae', 'ö': 'oe', 'ü': 'ue', 'ß': 'ss'})
+    translation_table = str.maketrans({'ä': 'ae', 'ö': 'oe', 'ü': 'ue', 'ß': 'ss', '%': ''})
     # check if cropped file exists
     croppedPath = original.url.replace(settings.MEDIA_URL, settings.MEDIA_ROOT+'cropped/').lower().translate(translation_table)
     croppedUrl = original.url.replace(settings.MEDIA_URL, settings.MEDIA_URL+'cropped/').lower().translate(translation_table)
