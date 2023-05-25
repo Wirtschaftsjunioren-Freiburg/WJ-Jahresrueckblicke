@@ -5,8 +5,8 @@ from django.conf import settings
 def cropImage(original):
     translation_table = str.maketrans({'ä': 'ae', 'ö': 'oe', 'ü': 'ue', 'ß': 'ss'})
     # check if cropped file exists
-    croppedPath = original.url.replace(settings.MEDIA_URL, settings.MEDIA_ROOT+'cropped/').translate(translation_table).lower()
-    croppedUrl = original.url.replace(settings.MEDIA_URL, settings.MEDIA_URL+'cropped/').translate(translation_table).lower()
+    croppedPath = original.url.replace(settings.MEDIA_URL, settings.MEDIA_ROOT+'cropped/').lower().translate(translation_table)
+    croppedUrl = original.url.replace(settings.MEDIA_URL, settings.MEDIA_URL+'cropped/').lower().translate(translation_table)
     if croppedPath in os.listdir(settings.MEDIA_ROOT+'cropped/'):
         return croppedUrl
     else:
