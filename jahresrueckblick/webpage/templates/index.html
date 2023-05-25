@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html lang="de">
     <head>
-        <meta name="viewport" content="width=device-width,initial-scale=1">
         <link rel="stylesheet" type="text/css" href="/static/css/main.css" />
         <link rel="stylesheet" type="text/css" href="/static/plugins/fullpage/fullpage.css" />
         <link rel="stylesheet" type="text/css" href="/static/plugins/bootstrap/css/bootstrap-grid.min.css" />
@@ -40,7 +39,7 @@
                 <img id="skyline" src="/static/img/skyline1_blue.svg" width="100%;">
             </section>
             {% for year in years %}
-            <section class="section {% if forloop.counter0|divisibleby:2 %}even{% else %}odd{% endif %}">
+            <section class="section fp-auto-height-responsive {% if forloop.counter0|divisibleby:2 %}even{% else %}odd{% endif %}">
                 <div class="p-5">
                     <h1>{{ year.name }}</h1>
                     <div class="slide" data-anchor="slide1">
