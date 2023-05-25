@@ -1,5 +1,7 @@
 from django.db import models
 
+from .tools import cropImage
+
 # Create a year model
 class YearSlide(models.Model):
 
@@ -37,7 +39,13 @@ class Highlight(models.Model):
     
     def __str__(self):
         return self.title + " - " + str(self.year.year)
-    
+
+    @property
+    def cropped_image(self):
+        return cropImage(self.image)
+
+
+
 # Create an Image model
 class Image(models.Model):
 
@@ -49,6 +57,10 @@ class Image(models.Model):
     image = models.ImageField(verbose_name="Foto / Bild", help_text="Bitte lade ein Bild hoch.")
     description = models.TextField(verbose_name="Beschreibung / Titel", help_text="Bitte gib eine Beschreibung an - zum Beispiel Anlass, Datum, Ort,...")
     
+    @property
+    def cropped_image(self):
+        return cropImage(self.image)
+
     def __str__(self):
         return self.description + " - " + str(self.year.year)
     
