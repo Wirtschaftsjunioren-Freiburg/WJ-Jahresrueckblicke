@@ -94,6 +94,12 @@ section.odd {
     background-color: linear-gradient(90deg, rgba(36,0,0,0) 85%, rgba(255,255,255,1) 100%);
 }
 
+@media only screen and (orientation: portrait) { 
+    .bordered {
+        height: 250px;
+    }
+}
+
 .odd .bordered {
     border: 1px solid rgb(1, 52, 147);
 }
