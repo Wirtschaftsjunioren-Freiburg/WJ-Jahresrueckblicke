@@ -1,192 +1,199 @@
 {% load math %}
 {% load filter %}
-<link rel="stylesheet" type="text/css" href="/static/css/main.css" />
-<link rel="stylesheet" type="text/css" href="/static/plugins/fullpage/fullpage.css" />
-<link rel="stylesheet" type="text/css" href="/static/plugins/bootstrap/css/bootstrap-grid.min.css" />
-<link rel="stylesheet" type="text/css" href="/static/plugins/lightbox2/css/lightbox.min.css" />
-<script type="text/javascript" src="/static/plugins/fontawesome/js/all.min.js"></script>
-<script type="text/javascript" src="/static/plugins/fullpage/fullpage.js"></script>
-<script type="text/javascript" src="/static/plugins/jquery/jquery-3.6.3.min.js"></script>
-<script type="text/javascript" src="/static/plugins/lightbox2/js/lightbox.min.js"></script>
-<script>
-    const anchors = ['start',{% for year in years %}'{{ year.year }}'{% if not forloop.last %},{% endif %}{% endfor %},'ende'];
-    const slides = ['Start',{% for year in years %}'{{ year.name }}'{% if not forloop.last %},{% endif %}{% endfor %},'Ende'];
-</script>
-<script type="text/javascript" src="/static/js/main.js"></script>
-
-<div id="fullpage">
-    <section class="section odd">
-        <div class="p-5">
-            <div class="row">
-                <div class="col-lg-3 col-md-5">
-                    <img src="/static/img/logo.svg" width="100%" alt="Wirtschaftsjunioren Freiburg" class="mb-5" />
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="/static/css/main.css" />
+        <link rel="stylesheet" type="text/css" href="/static/plugins/fullpage/fullpage.css" />
+        <link rel="stylesheet" type="text/css" href="/static/plugins/bootstrap/css/bootstrap-grid.min.css" />
+        <link rel="stylesheet" type="text/css" href="/static/plugins/lightbox2/css/lightbox.min.css" />
+        <script type="text/javascript" src="/static/plugins/fontawesome/js/all.min.js"></script>
+        <script type="text/javascript" src="/static/plugins/fullpage/fullpage.js"></script>
+        <script type="text/javascript" src="/static/plugins/jquery/jquery-3.6.3.min.js"></script>
+        <script type="text/javascript" src="/static/plugins/lightbox2/js/lightbox.min.js"></script>
+        <script>
+            const anchors = ['start',{% for year in years %}'{{ year.year }}'{% if not forloop.last %},{% endif %}{% endfor %},'ende'];
+            const slides = ['Start',{% for year in years %}'{{ year.name }}'{% if not forloop.last %},{% endif %}{% endfor %},'Ende'];
+        </script>
+        <script type="text/javascript" src="/static/js/main.js"></script>
+    </head>
+    <body>
+        <div id="fullpage">
+            <section class="section odd">
+                <div class="p-5">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-5">
+                            <img src="/static/img/logo.svg" width="100%" alt="Wirtschaftsjunioren Freiburg" class="mb-5" />
+                        </div>
+                        <div class="col-lg-9 col-md-7" style="text-align: right;">
+                            <small>Mit freundlicher Unterstützung der <a href="https://software-design.de">SD Software-Design GmbH</a></small>
+                        </div>
+                        <div class="col-md-12">
+                            <h1 class="mt-3 pt-3 pb-0 mb-0">{{ years.0.year|subtract:years.last.year }} Jahre</h1>
+                            <h2 class="mt-0">Wirtschaftsjunioren Freiburg</h2>
+                            <a href="#{{ years.0.year }}" style="text-decoration: none;">
+                                <h3 class="action"><i class="fa fa-angles-down fa-beat fade-scale"></i> Scrollen, um den interaktiven Rückblick zu entdecken</h3></a>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-lg-9 col-md-7" style="text-align: right;">
-                    <small>Mit freundlicher Unterstützung der <a href="https://software-design.de">SD Software-Design GmbH</a></small>
-                </div>
-                <div class="col-md-12">
-                    <h1 class="mt-3 pt-3 pb-0 mb-0">{{ years.0.year|subtract:years.last.year }} Jahre</h1>
-                    <h2 class="mt-0">Wirtschaftsjunioren Freiburg</h2>
-                    <a href="#{{ years.0.year }}" style="text-decoration: none;">
-                        <h3 class="action"><i class="fa fa-angles-down fa-beat fade-scale"></i> Scrollen, um den interaktiven Rückblick zu entdecken</h3></a>
-                </div>
-            </div>
-        </div>
-        <img id="skyline" src="/static/img/skyline1_blue.svg" width="100%;">
-    </section>
-    {% for year in years %}
-    <section class="section {% if forloop.counter0|divisibleby:2 %}even{% else %}odd{% endif %}">
-        <div class="p-5">
-            <h1>{{ year.name }}</h1>
-            <div class="slide" data-anchor="slide1">
-                <div class="row">
-                    <div class="col-12 col-lg-5 col-xl-3 positions">
+                <img id="skyline" src="/static/img/skyline1_blue.svg" width="100%;">
+            </section>
+            {% for year in years %}
+            <section class="section {% if forloop.counter0|divisibleby:2 %}even{% else %}odd{% endif %}">
+                <div class="p-5">
+                    <h1>{{ year.name }}</h1>
+                    <div class="slide" data-anchor="slide1">
                         <div class="row">
-                            <div class="col-6 col-lg-12">
-                                {% if year.position_set|getChairmen|length > 0 %}
-                                    <h3><i class="fa fa-crown"></i> Vorstandsvorsitzende(r)</h3>
-                                    <div class="ps-5">
-                                        {% for position in year.position_set|getChairmen %}
-                                            {% if position.chairman %}
-                                                <strong>{{ position.person }}</strong><br>
-                                                {{ position.position }}<br><br>
-                                            {% endif %}
-                                        {% endfor %}
-                                    </div>
-                                {% endif %}
-                                {% if year.position_set|getNonChairmen|length > 0 %}
-                                <h3><i class="fa fa-users"></i> Vorstandsteam</h3>
-                                <div class="ps-5">
-                                    {% for position in year.position_set|getNonChairmen %}
-                                        {% if not position.chairman %}
-                                            <strong>{{ position.person }}</strong><br>
-                                            {{ position.position }}<br><br>
+                            <div class="col-12 col-lg-5 col-xl-3 positions">
+                                <div class="row">
+                                    <div class="col-6 col-lg-12">
+                                        {% if year.position_set|getChairmen|length > 0 %}
+                                            <h3><i class="fa fa-crown"></i> Vorstandsvorsitzende(r)</h3>
+                                            <div class="ps-5">
+                                                {% for position in year.position_set|getChairmen %}
+                                                    {% if position.chairman %}
+                                                        <strong>{{ position.person }}</strong><br>
+                                                        {{ position.position }}<br><br>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </div>
                                         {% endif %}
-                                    {% endfor %}
-                                </div>
-                                {% endif %}
-                            </div>
-                            <div class="col-6 col-lg-12">
-                                {% if year.honour_set.all|length > 0 %}
-                                <h3><i class="fa fa-medal"></i> Ehrungen</h3>
-                                <div class="ps-5">
-                                    {% for honour in year.honour_set.all %}
-                                        <strong>{{ honour.person }}</strong><br>
-                                        {{ honour.honour }}<br><br>
-                                    {% endfor %}
-                                </div>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-                    {% if year.document and year.document_image %}
-                        <div class="col-12 col-lg-3">
-                            <div class="row">
-                                <div class="col-12">
-                                    <h2 class="mt-3 mt-lg-0">Download</h2>
-                                </div>
-                                <div class="col-12 col-sm-6 col-lg-12">
-                                    {% if year.document and year.document_image %}
-                                    <img src="{{ year.document_image.url }}" class="pdf-preview">
-                                    <br><br>
-                                </div>
-                                <div class="col-12 col-sm-6 col-lg-12">
-                                    <a href="{{ year.document.url }}">
-                                        <div class="pdf-label">
-                                            <i class="fa fa-file-pdf"></i>  Jahresrückblick als PDF &raquo;
+                                        {% if year.position_set|getNonChairmen|length > 0 %}
+                                        <h3><i class="fa fa-users"></i> Vorstandsteam</h3>
+                                        <div class="ps-5">
+                                            {% for position in year.position_set|getNonChairmen %}
+                                                {% if not position.chairman %}
+                                                    <strong>{{ position.person }}</strong><br>
+                                                    {{ position.position }}<br><br>
+                                                {% endif %}
+                                            {% endfor %}
                                         </div>
-                                    </a>
-                                    {% endif %}
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-6 col-lg-12">
+                                        {% if year.honour_set.all|length > 0 %}
+                                        <h3><i class="fa fa-medal"></i> Ehrungen</h3>
+                                        <div class="ps-5">
+                                            {% for honour in year.honour_set.all %}
+                                                <strong>{{ honour.person }}</strong><br>
+                                                {{ honour.honour }}<br><br>
+                                            {% endfor %}
+                                        </div>
+                                        {% endif %}
+                                    </div>
                                 </div>
                             </div>
+                            {% if year.document and year.document_image %}
+                                <div class="col-12 col-lg-3">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h2 class="mt-3 mt-lg-0">Download</h2>
+                                        </div>
+                                        <div class="col-12 col-sm-6 col-lg-12">
+                                            {% if year.document and year.document_image %}
+                                            <img src="{{ year.document_image.url }}" class="pdf-preview">
+                                            <br><br>
+                                        </div>
+                                        <div class="col-12 col-sm-6 col-lg-12">
+                                            <a href="{{ year.document.url }}">
+                                                <div class="pdf-label">
+                                                    <i class="fa fa-file-pdf"></i>  Jahresrückblick als PDF &raquo;
+                                                </div>
+                                            </a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-12 col-xl-6 d-none d-lg-block">
+                            {% else %}
+                            <div class="col-12 col-lg-7 col-xl-9 d-none d-lg-block">
+                            {% endif %}
+                                {% if not year.document and year.highlight_set.count == 0 %}
+                                    <h3>Leider fehlen uns für {{ year.name }} noch Bilder und Aufzeichnungen!</h3>
+                                    Wenn du Bilder, Texte oder Unterlagen aus dem Jahr {{ year.name }} hast, sende sie uns bitte an "<em>presse@wj-freiburg.de</em>"!
+                                {% else %}
+                                    <h2 class="mt-3 mt-lg-0">{% if year.slogan %}{{ year.slogan }}{% else %}Highlights{% endif %}</h2>
+                                {% endif %}
+                                {% for highlight in year.highlight_set.all|limit:3 %}
+                                {% include 'highlight.html' with small=True %}
+                                {% endfor %}
+                            </div>
                         </div>
-                        <div class="col-12 col-lg-12 col-xl-6 d-none d-lg-block">
-                    {% else %}
-                    <div class="col-12 col-lg-7 col-xl-9 d-none d-lg-block">
+                    </div>
+                    <div class="slide d-lg-none" data-anchor="slide4">
+                        <h2 class="mt-0 mb-4">Unsere Highlights</h2>
+                        <div class="row">
+                            <div class="col-12">
+                                Im Jahr {{ year.name }} haben wir folgende besondere Highlights in unserem Kreis organisiert. Swipe nach rechs, um weitere Termine und Events zu sehen.<br><br>
+                            </div>
+                            {% for highlight in year.highlight_set.all|limit:3 %}
+                            <div class="col-12 col-lg-6">
+                                {% include 'highlight.html' %}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% if year.image_set.count > 0 %}
+                    <div class="slide" data-anchor="slide3">
+                        <h2 class="mt-0 mb-4">Bilder und Impressionen</h2>
+                        <div class="row">
+                            {% for image in year.image_set.all %}
+                            <div class="col-12 col-md-6 col-lg-2 p-1 text-center">
+                                <a href="{{ image.image.url }}" data-lightbox="image-{{ image.pk }}" data-title="{{ image.description }}">
+                                    <img class="image" src="{{ image.cropped_image }}" width="100%" loading="lazy">
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
                     {% endif %}
-                        {% if not year.document and year.highlight_set.count == 0 %}
-                            <h3>Leider fehlen uns für {{ year.name }} noch Bilder und Aufzeichnungen!</h3>
-                            Wenn du Bilder, Texte oder Unterlagen aus dem Jahr {{ year.name }} hast, sende sie uns bitte an "<em>presse@wj-freiburg.de</em>"!
-                        {% else %}
-                            <h2 class="mt-3 mt-lg-0">{% if year.slogan %}{{ year.slogan }}{% else %}Highlights{% endif %}</h2>
-                        {% endif %}
-                        {% for highlight in year.highlight_set.all|limit:3 %}
-                           {% include 'highlight.html' with small=True %}
-                        {% endfor %}
+                    {% if year.highlight_set.count > 3 %}
+                    <div class="slide" data-anchor="slide2">
+                        <h2 class="mt-0 mb-4">Weitere Termine & Events</h2>
+                        <div class="row">
+                            {% for highlight in year.highlight_set.all|startat:3|limit:6 %}
+                            <div class="col-12 col-lg-6">
+                                {% include 'highlight.html' %}
+                            </div>
+                            {% endfor %}
+                        </div>
                     </div>
+                    {% endif %}
+                    {% if year.highlight_set.count > 9 %}
+                    <div class="slide" data-anchor="slide3">
+                        <h2 class="mt-0 mb-4">Weitere Termine & Events</h2>
+                        <div class="row">
+                            {% for highlight in year.highlight_set.all|startat:9 %}
+                            <div class="col-12 col-lg-6">
+                                {% include 'highlight.html' %}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
                 </div>
-            </div>
-            <div class="slide d-lg-none" data-anchor="slide4">
-                <h2 class="mt-0 mb-4">Unsere Highlights</h2>
-                <div class="row">
-                    <div class="col-12">
-                        Im Jahr {{ year.name }} haben wir folgende besondere Highlights in unserem Kreis organisiert. Swipe nach rechs, um weitere Termine und Events zu sehen.<br><br>
-                    </div>
-                    {% for highlight in year.highlight_set.all|limit:3 %}
-                    <div class="col-12 col-lg-6">
-                        {% include 'highlight.html' %}
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-            {% if year.image_set.count > 0 %}
-            <div class="slide" data-anchor="slide3">
-                <h2 class="mt-0 mb-4">Bilder und Impressionen</h2>
-                <div class="row">
-                    {% for image in year.image_set.all %}
-                    <div class="col-12 col-md-6 col-lg-2 p-1 text-center">
-                        <a href="{{ image.image.url }}" data-lightbox="image-{{ image.pk }}" data-title="{{ image.description }}">
-                            <img class="image" src="{{ image.cropped_image }}" width="100%" loading="lazy">
-                        </a>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-            {% endif %}
-            {% if year.highlight_set.count > 3 %}
-            <div class="slide" data-anchor="slide2">
-                <h2 class="mt-0 mb-4">Weitere Termine & Events</h2>
-                <div class="row">
-                    {% for highlight in year.highlight_set.all|startat:3|limit:6 %}
-                    <div class="col-12 col-lg-6">
-                        {% include 'highlight.html' %}
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-            {% endif %}
-            {% if year.highlight_set.count > 9 %}
-            <div class="slide" data-anchor="slide3">
-                <h2 class="mt-0 mb-4">Weitere Termine & Events</h2>
-                <div class="row">
-                    {% for highlight in year.highlight_set.all|startat:9 %}
-                    <div class="col-12 col-lg-6">
-                        {% include 'highlight.html' %}
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-            {% endif %}
-        </div>
-    </section>
-    {% endfor %}
+            </section>
+            {% endfor %}
 
-    <section class="section odd">
-        <div class="p-5">
-            <div class="row">
-                <div class="col-md-6">
-                    <img src="/static/img/logo.svg" width="400" alt="Wirtschaftsjunioren Freiburg" class="mb-5" />
+            <section class="section odd">
+                <div class="p-5">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="/static/img/logo.svg" width="400" alt="Wirtschaftsjunioren Freiburg" class="mb-5" />
+                        </div>
+                        <div class="col-md-6" style="text-align: right;">
+                        </div>
+                        <div class="col-md-12">
+                            <h2 class="mt-5">Der digitale Jahresrückblick...</h2>
+                            <h3 style="color: lightgrey; font-size: 2em;">...mit freundlicher Unterstützung der SD Software-Design GmbH</h3>
+                            <br>
+                            <img src="/static/img/sd.png" width="600" alt="SD Software-Design GmbH" class="mb-5" />
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-6" style="text-align: right;">
-                </div>
-                <div class="col-md-12">
-                    <h2 class="mt-5">Der digitale Jahresrückblick...</h2>
-                    <h3 style="color: lightgrey; font-size: 2em;">...mit freundlicher Unterstützung der SD Software-Design GmbH</h3>
-                    <br>
-                    <img src="/static/img/sd.png" width="600" alt="SD Software-Design GmbH" class="mb-5" />
-                </div>
-            </div>
+                <img id="skyline" src="/static/img/skyline1_blue.svg" width="100%;">
+            </section>
         </div>
-        <img id="skyline" src="/static/img/skyline1_blue.svg" width="100%;">
-    </section>
-</div>
+    </body>
+</html>

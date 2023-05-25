@@ -7,7 +7,7 @@ def cropImage(original):
     # check if cropped file exists
     croppedPath = original.url.replace(settings.MEDIA_URL, settings.MEDIA_ROOT+'cropped/').lower().translate(translation_table)
     croppedUrl = original.url.replace(settings.MEDIA_URL, settings.MEDIA_URL+'cropped/').lower().translate(translation_table)
-    if croppedPath in os.listdir(settings.MEDIA_ROOT+'cropped/'):
+    if os.path.isfile(croppedPath):
         return croppedUrl
     else:
         # crop image
