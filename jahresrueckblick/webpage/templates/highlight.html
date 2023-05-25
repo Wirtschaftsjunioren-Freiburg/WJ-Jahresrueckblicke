@@ -1,10 +1,10 @@
 <div class="row {% if small %}m-3{% else %}m-2{% endif %} bordered">
-    <div class="{% if small %}col-3{% else %}col-4{% endif %}" style="padding-left: 0px !important;">
-        <a href="{{ highlight.cropped_imagel }}" data-lightbox="image-{{ highlight.date|date:"Y-m-y" }}" data-title="{{ highlight.title }}">
-            <img src="{{ highlight.cropped_image }}" loading="lazy" width="100%">
+    <div class="col-md-7 col-lg-5 col-xl-3" style="padding-left: 0px !important;">
+        <a href="{{ highlight.image.url }}" data-lightbox="image-{{ highlight.date|date:"Y-m-y" }}" data-title="{{ highlight.title }}">
+            <div style="background-image: url({{ highlight.cropped_image }});" class="image"></div>
         </a>
     </div>
-    <div class="{% if small %}col-9{% else %}col-8{% endif %}">
+    <div class="col-md-5 col-lg-7 col-xl-9">
         <h3 class="my-2 my-lg-3">{{ highlight.title }}</h3>
         <div class="p-1">
             <div class="row">
