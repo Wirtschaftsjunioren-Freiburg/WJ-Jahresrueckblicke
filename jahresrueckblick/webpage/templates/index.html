@@ -53,7 +53,7 @@
                                                 {% for position in year.position_set|getChairmen %}
                                                     {% if position.chairman %}
                                                         <strong>{{ position.person }}</strong><br>
-                                                        {{ position.position }}<br><br>
+                                                        <small>{{ position.position }}<br><br></small>
                                                     {% endif %}
                                                 {% endfor %}
                                             </div>
@@ -64,7 +64,7 @@
                                             {% for position in year.position_set|getNonChairmen %}
                                                 {% if not position.chairman %}
                                                     <strong>{{ position.person }}</strong><br>
-                                                    {{ position.position }}<br><br>
+                                                    <small>{{ position.position }}<br><br></small>
                                                 {% endif %}
                                             {% endfor %}
                                         </div>
@@ -76,7 +76,7 @@
                                         <div class="ps-5">
                                             {% for honour in year.honour_set.all %}
                                                 <strong>{{ honour.person }}</strong><br>
-                                                {{ honour.honour }}<br><br>
+                                                <small>{{ honour.honour }}<br><br></small>
                                             {% endfor %}
                                         </div>
                                         {% endif %}
