@@ -53,7 +53,7 @@
                                                 {% for position in year.position_set|getChairmen %}
                                                     {% if position.chairman %}
                                                         <strong>{{ position.person }}</strong><br>
-                                                        <small>{{ position.position }}<br><br></small>
+                                                        <small>{{ position.position }}<br></small>
                                                     {% endif %}
                                                 {% endfor %}
                                             </div>
@@ -64,7 +64,7 @@
                                             {% for position in year.position_set|getNonChairmen %}
                                                 {% if not position.chairman %}
                                                     <strong>{{ position.person }}</strong><br>
-                                                    <small>{{ position.position }}<br><br></small>
+                                                    <small>{{ position.position }}<br></small>
                                                 {% endif %}
                                             {% endfor %}
                                         </div>
