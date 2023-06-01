@@ -137,7 +137,21 @@
                     <div class="slide" data-anchor="slide3">
                         <h2 class="mt-0 mb-4">Bilder und Impressionen</h2>
                         <div class="row">
-                            {% for image in year.image_set.all %}
+                            {% for image in year.image_set.all|startat:0|limit:24 %}
+                            <div class="col-12 col-md-6 col-lg-2 p-1 text-center">
+                                <a href="{{ image.image.url }}" data-lightbox="image-{{ image.pk }}" data-title="{{ image.description }}">
+                                    <img class="image" src="{{ image.cropped_image }}" width="100%" loading="lazy">
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if year.image_set.count > 24 %}
+                    <div class="slide" data-anchor="slide5">
+                        <h2 class="mt-0 mb-4">Bilder und Impressionen</h2>
+                        <div class="row">
+                            {% for image in year.image_set.all|startat:24|limit:48 %}
                             <div class="col-12 col-md-6 col-lg-2 p-1 text-center">
                                 <a href="{{ image.image.url }}" data-lightbox="image-{{ image.pk }}" data-title="{{ image.description }}">
                                     <img class="image" src="{{ image.cropped_image }}" width="100%" loading="lazy">
